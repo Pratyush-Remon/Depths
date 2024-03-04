@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmtjetbvr68rr"]
+
+[ext_resource type="Script" path="res://Scenes/DynamicObjects/Player/Player.gd" id="1_a3ght"]
+[ext_resource type="Script" path="res://Scenes/DynamicObjects/Player/FSM.gd" id="2_gpc5x"]
+[ext_resource type="Script" path="res://Scenes/DynamicObjects/Player/PlayerStates/IDLE.gd" id="3_munby"]
+[ext_resource type="Script" path="res://Scenes/DynamicObjects/Player/PlayerStates/MOVE.gd" id="4_vcoxa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_deh18"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_a3ght")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_deh18")
+debug_color = Color(0.254902, 0.623529, 0.360784, 0.419608)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_deh18")
+debug_color = Color(0.254902, 0.623529, 0.360784, 0.419608)
+
+[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_gpc5x")
+initial_state = NodePath("IDLE")
+
+[node name="IDLE" type="Node" parent="FSM"]
+script = ExtResource("3_munby")
+
+[node name="MOVE" type="Node" parent="FSM"]
+script = ExtResource("4_vcoxa")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
