@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnwj8at5vry23"]
+
+[ext_resource type="PackedScene" uid="uid://dmtjetbvr68rr" path="res://Scenes/DynamicObjects/Player/Player.tscn" id="1_r4owc"]
+[ext_resource type="PackedScene" uid="uid://crosoo6mu8w2x" path="res://Scenes/DynamicObjects/Water/Water.tscn" id="2_j6jg6"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_r4owc")]
+position = Vector2(310, 46)
+
+[node name="Water" parent="." groups=["Water"] instance=ExtResource("2_j6jg6")]
