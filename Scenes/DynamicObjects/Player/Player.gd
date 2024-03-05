@@ -5,9 +5,6 @@ class_name Player
 
 
 func _physics_process(delta):
-	velocity.y = 200
-	if Input.is_action_pressed("ui_up"):
-		velocity.y = -400
 	print(in_water)
 	move_and_slide()
 	
