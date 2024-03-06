@@ -2,10 +2,10 @@ extends CharacterBody2D
 class_name Player
 
 @export var in_water:bool = false
+@export var weight:float = 25
 
 
 func _physics_process(delta):
-	print(in_water)
 	move_and_slide()
 	
 
